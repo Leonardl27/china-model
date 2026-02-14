@@ -8,6 +8,12 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   update-models:
@@ -41,10 +47,32 @@ jobs:
           python current_account_forensics.py > /dev/null 2>&1 || true
           python fx_intervention.py > /dev/null 2>&1 || true
 
+      - name: Generate GitHub Pages site
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: python generate_site.py
+
       - name: Commit updated outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add *.png report.txt data_cache/
+          git add *.png report.txt data_cache/ docs/
           git diff --cached --quiet || git commit -m "Weekly model update: $(date -u +%Y-%m-%d)"
           git push
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/
+
+  deploy-pages:
+    needs: update-models
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

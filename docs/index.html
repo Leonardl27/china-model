@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pettis-Setser China Economic Model</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --orange: #d29922;
+      --red: #f85149;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1a2332 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    header .subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    .score-banner {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 8px 24px;
+      background: rgba(63, 185, 80, 0.15);
+      border: 1px solid rgba(63, 185, 80, 0.4);
+      border-radius: 20px;
+      color: var(--green);
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .timestamp {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    /* Metrics grid */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin: 32px 0;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .metric-card .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .metric-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .metric-card .detail {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Section headers */
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Charts */
+    .chart-full {
+      margin: 24px 0;
+      text-align: center;
+    }
+    .chart-full img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .chart-grid img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .chart-caption {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    /* Scorecard table */
+    .scorecard-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 32px;
+      font-size: 14px;
+    }
+    .scorecard-table th {
+      background: #1f2937;
+      color: var(--text);
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid var(--border);
+    }
+    .scorecard-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .scorecard-table tr:hover {
+      background: rgba(88, 166, 255, 0.04);
+    }
+    .metric-cell {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 13px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge.confirmed {
+      background: rgba(63, 185, 80, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(63, 185, 80, 0.4);
+    }
+    .badge.partial {
+      background: rgba(210, 153, 34, 0.15);
+      color: var(--orange);
+      border: 1px solid rgba(210, 153, 34, 0.4);
+    }
+    .badge.rejected {
+      background: rgba(248, 81, 73, 0.15);
+      color: var(--red);
+      border: 1px solid rgba(248, 81, 73, 0.4);
+    }
+    .framework-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: rgba(88, 166, 255, 0.1);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 0;
+      margin-top: 48px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .chart-grid { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr; }
+      header h1 { font-size: 22px; }
+      .metric-card .value { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Pettis-Setser China Economic Model</h1>
+      <div class="subtitle">
+        Quantitative analysis of China's structural imbalances, hidden reserves, and FX intervention
+      </div>
+      <div class="score-banner">4/6 predictions confirmed by market data</div>
+      <div class="timestamp">Last updated: 2026-02-14 21:01 UTC</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Key Metrics -->
+    <h2 class="section-title">Key Metrics</h2>
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="label">True FX Reserves (Setser)</div>
+        <div class="value">$5,810B</div>
+        <div class="detail">Official: $3,200B &middot; 44.9% hidden</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Household Consumption / GDP (Pettis)</div>
+        <div class="value">39.9%</div>
+        <div class="detail">Global avg: 58% &middot; Gap: 18.1 pp</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">True Current Account Surplus (Setser)</div>
+        <div class="value">$1,000B</div>
+        <div class="detail">Official: $590B &middot; 5.3% of GDP</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">RMB Undervaluation (Setser)</div>
+        <div class="value">48.0%</div>
+        <div class="detail">USD/CNY: 7.18 actual vs 4.85 fair value</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">State Bank FX Accumulation</div>
+        <div class="value">$739B</div>
+        <div class="detail">Since 2022 &middot; PBOC reserves flat</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Trade Surplus Trajectory</div>
+        <div class="value">$1,100B</div>
+        <div class="detail">Up from $370,339B in 2018</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Investment / GDP (Pettis)</div>
+        <div class="value">40.6%</div>
+        <div class="detail">Global avg: 25% &middot; Excess: 15.6 pp</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Debt / GDP</div>
+        <div class="value">310%</div>
+        <div class="detail">Up from 235% in 2018</div>
+      </div>
+    </div>
+
+    <!-- Dashboard Chart -->
+    <h2 class="section-title">Combined Dashboard</h2>
+    <div class="chart-full">
+      <img src="dashboard.png" alt="Pettis-Setser Combined Dashboard" loading="lazy">
+    </div>
+
+    <!-- Individual Model Charts -->
+    <h2 class="section-title">Individual Models</h2>
+    <div class="chart-grid">
+      <div>
+        <img src="shadow_reserves.png" alt="Shadow Reserves (Setser)" loading="lazy">
+        <div class="chart-caption">Model 1: Shadow Reserves &mdash; True FX holdings vs reported (Setser)</div>
+      </div>
+      <div>
+        <img src="structural_imbalance.png" alt="Structural Imbalance (Pettis)" loading="lazy">
+        <div class="chart-caption">Model 2: Structural Imbalance &mdash; Consumption vs investment distortion (Pettis)</div>
+      </div>
+      <div>
+        <img src="current_account_forensics.png" alt="Current Account Forensics (Setser)" loading="lazy">
+        <div class="chart-caption">Model 3: Current Account Forensics &mdash; Missing surplus detection (Setser)</div>
+      </div>
+      <div>
+        <img src="fx_intervention.png" alt="FX Intervention (Setser)" loading="lazy">
+        <div class="chart-caption">Model 4: FX Intervention &mdash; Backdoor state bank intervention (Setser)</div>
+      </div>
+    </div>
+
+    <!-- Scorecard -->
+    <h2 class="section-title">Scorecard: Framework vs Market Reality</h2>
+    <table class="scorecard-table">
+      <thead>
+        <tr>
+          <th>Prediction</th>
+          <th>Framework</th>
+          <th>Market Evidence</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr>
+              <td>Trade surplus keeps growing</td>
+              <td><span class="framework-tag">Both</span></td>
+              <td class="metric-cell">$370339B -> $1100B (-100%)</td>
+              <td><span class="badge partial">PARTIAL</span></td>
+            </tr>
+            <tr>
+              <td>Debt/GDP keeps rising (unproductive investment)</td>
+              <td><span class="framework-tag">Pettis</span></td>
+              <td class="metric-cell">235.0% -> 310.0% (+75 pp)</td>
+              <td><span class="badge confirmed">CONFIRMED</span></td>
+            </tr>
+            <tr>
+              <td>Deflation / disinflation (weak demand)</td>
+              <td><span class="framework-tag">Pettis</span></td>
+              <td class="metric-cell">Avg CPI: 0.2%, Avg PPI: -2.2% (last 3yr)</td>
+              <td><span class="badge confirmed">CONFIRMED</span></td>
+            </tr>
+            <tr>
+              <td>Manufacturing overcapacity / rising global share</td>
+              <td><span class="framework-tag">Pettis</span></td>
+              <td class="metric-cell">28.5% -> 33.0% of global mfg (+4.5 pp)</td>
+              <td><span class="badge confirmed">CONFIRMED</span></td>
+            </tr>
+            <tr>
+              <td>RMB kept artificially weak (REER declining)</td>
+              <td><span class="framework-tag">Setser</span></td>
+              <td class="metric-cell">REER: 98.0 -> 89.0 (-9)</td>
+              <td><span class="badge partial">PARTIAL</span></td>
+            </tr>
+            <tr>
+              <td>Property sector stress (investment model breaking)</td>
+              <td><span class="framework-tag">Pettis</span></td>
+              <td class="metric-cell">Price index: 100 peak -> 72 (-28)</td>
+              <td><span class="badge confirmed">CONFIRMED</span></td>
+            </tr>
+
+      </tbody>
+    </table>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Based on the frameworks of
+      <a href="https://carnegieendowment.org/people/michael-pettis" target="_blank" rel="noopener">Michael Pettis</a> and
+      <a href="https://www.cfr.org/expert/brad-w-setser" target="_blank" rel="noopener">Brad Setser</a>.
+      Data from FRED, World Bank, PBOC, SAFE, NBS.
+      <br>
+      <a href="https://github.com/leonardl27/china-model" target="_blank" rel="noopener">View source on GitHub</a>
+    </div>
+  </footer>
+
+</body>
+</html>
