@@ -31,15 +31,15 @@ markets don't see in headline reserve numbers.
 =================================================================
 STRUCTURAL IMBALANCE SUMMARY (Pettis Framework) - 2025
 =================================================================
-  Household Consumption / GDP:    38.8%  (global avg: 58%)
-  Investment / GDP:               42.2%  (global avg: 25%)
-  Net Exports / GDP:               3.0%
+  Household Consumption / GDP:    39.9%  (global avg: 58%)
+  Investment / GDP:               40.6%  (global avg: 25%)
+  Net Exports / GDP:               2.9%
   Household Income / GDP:         44.8%  (global avg: 60-65%)
   Real Deposit Rate:             +160 bps
   ----------------------------------------
-  Consumption Gap vs World:       19.2 pp
-  Investment Excess vs World:     17.2 pp
-  Peak Investment Year:         2010 (47.2%)
+  Consumption Gap vs World:       18.1 pp
+  Investment Excess vs World:     15.6 pp
+  Peak Investment Year:         2011 (46.3%)
 =================================================================
 
 Pettis thesis: China's GDP growth is overstated because a large
@@ -75,7 +75,7 @@ CURRENT ACCOUNT FORENSICS (Setser Framework) - 2025
   Setser Estimated CA:          $  1,000B
   IMF Forecast:                 $    365B
   ----------------------------------------
-  Official CA / GDP:               3.1%
+  Official CA / GDP:               3.2%
   Setser CA / GDP:                 5.3%
   US Treasury threshold:         3.0%
   ----------------------------------------
@@ -94,13 +94,13 @@ US Treasury's 3% threshold for currency manipulation.
 =================================================================
 FX INTERVENTION DETECTOR (Setser Framework) - Jun 2025
 =================================================================
-  USD/CNY Actual:                  7.15
+  USD/CNY Actual:                  7.18
   Setser Fair Value:               4.85
-  Undervaluation:                 47.4%
+  Undervaluation:                 48.0%
   ----------------------------------------
   Cumul. State Bank FX Buys:    $    739B
-  Cumul. PBOC Reserve Chg:      $    -49B
-  Cumul. Total Intervention:    $    690B
+  Cumul. PBOC Reserve Chg:      $    +71B
+  Cumul. Total Intervention:    $    810B
   ----------------------------------------
   Dec 2024 state bank buying:   $110B (spot) / $120B (incl forwards)
 =================================================================
@@ -119,21 +119,21 @@ manufacturing trade surplus significantly.
 ==========================================================================================
 Prediction                                 Source   Verdict     
 ------------------------------------------------------------------------------------------
-  Trade surplus keeps growing              Both     CONFIRMED   
-    Evidence: $350B -> $1100B (+214%)
+  Trade surplus keeps growing              Both     PARTIAL     
+    Evidence: $370339B -> $1100B (-100%)
   Debt/GDP keeps rising (unproductive investment) Pettis   CONFIRMED   
-    Evidence: 253% -> 310% (+57 pp)
+    Evidence: 235.0% -> 310.0% (+75 pp)
   Deflation / disinflation (weak demand)   Pettis   CONFIRMED   
     Evidence: Avg CPI: 0.2%, Avg PPI: -2.2% (last 3yr)
   Manufacturing overcapacity / rising global share Pettis   CONFIRMED   
     Evidence: 28.5% -> 33.0% of global mfg (+4.5 pp)
-  RMB kept artificially weak (REER declining) Setser   CONFIRMED   
-    Evidence: REER: 105 -> 83 (-22)
+  RMB kept artificially weak (REER declining) Setser   PARTIAL     
+    Evidence: REER: 98.0 -> 89.0 (-9)
   Property sector stress (investment model breaking) Pettis   CONFIRMED   
     Evidence: Price index: 100 peak -> 72 (-28)
 ==========================================================================================
 
-  SCORE: 6/6 predictions CONFIRMED
+  SCORE: 4/6 predictions CONFIRMED
   The Pettis-Setser framework has strong explanatory power for
   China's current economic trajectory.
 
@@ -170,4 +170,4 @@ Prediction                                 Source   Verdict
     
 
 Saved: dashboard.png
---- Run completed at Sat Feb 14 20:20:03 UTC 2026 ---
+--- Run completed at Sat Feb 14 21:15:19 UTC 2026 ---
