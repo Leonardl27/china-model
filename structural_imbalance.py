@@ -24,92 +24,46 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 
+from data_fetcher import (
+    fetch_china_consumption_pct,
+    fetch_china_gov_consumption_pct,
+    fetch_china_investment_pct,
+    fetch_china_gdp_usd_B,
+    fetch_benchmarks_consumption,
+    fetch_benchmarks_investment,
+)
+
 
 def build_structural_dataset():
     """
     China GDP expenditure breakdown and comparisons.
 
     Sources:
-    - NBS China Statistical Yearbook (consumption, investment, net exports as % GDP)
-    - World Bank WDI (international comparisons)
+    - World Bank WDI (live via data_fetcher, with hardcoded fallback)
+    - NBS China Statistical Yearbook
     - Pettis's Carnegie writings for framework interpretation
     """
 
     years = list(range(2000, 2026))
 
     # --- China: Household Consumption as % of GDP ---
-    # Source: NBS, World Bank. Pettis emphasizes this is THE key metric.
+    # Source: World Bank NE.CON.PRVT.ZS (live) / NBS (fallback)
+    # Pettis emphasizes this is THE key metric.
     # Global norm: 55-65% for comparable economies, 74-75% global average
-    china_consumption_pct = [
-        46.7,  # 2000
-        45.3,  # 2001
-        44.0,  # 2002
-        42.2,  # 2003
-        40.6,  # 2004
-        39.2,  # 2005
-        38.2,  # 2006
-        36.7,  # 2007
-        35.6,  # 2008 - trough approaching
-        35.4,  # 2009
-        35.6,  # 2010
-        36.3,  # 2011
-        36.5,  # 2012
-        36.6,  # 2013
-        37.3,  # 2014
-        38.0,  # 2015
-        39.3,  # 2016
-        39.1,  # 2017
-        39.4,  # 2018
-        39.2,  # 2019
-        38.1,  # 2020 - COVID hit consumption
-        38.5,  # 2021
-        37.2,  # 2022
-        39.7,  # 2023 - NBS revised methodology
-        38.5,  # 2024
-        38.8,  # 2025 est
-    ]
+    china_consumption_pct = fetch_china_consumption_pct(years)
 
     # --- China: Government Consumption as % of GDP ---
-    china_gov_consumption_pct = [
-        16.0, 16.2, 15.8, 14.8, 14.0, 14.2, 13.9, 13.5, 13.5, 13.6,
-        13.3, 13.7, 13.9, 14.0, 14.3, 14.7, 14.6, 14.4, 14.9, 15.1,
-        16.5, 15.8, 16.3, 16.2, 16.0, 16.0,
-    ]
+    # Source: World Bank NE.CON.GOVT.ZS (live) / NBS (fallback)
+    china_gov_consumption_pct = fetch_china_gov_consumption_pct(years)
 
     # --- China: Total Consumption (household + gov) as % of GDP ---
     china_total_consumption = [h + g for h, g in
                                 zip(china_consumption_pct, china_gov_consumption_pct)]
 
     # --- China: Gross Capital Formation (Investment) as % of GDP ---
-    # Source: NBS. Pettis: "40-50% for over a decade - unprecedented"
-    china_investment_pct = [
-        34.3,  # 2000
-        36.5,  # 2001
-        37.9,  # 2002
-        41.0,  # 2003
-        43.3,  # 2004
-        42.1,  # 2005
-        41.8,  # 2006
-        41.7,  # 2007
-        43.8,  # 2008 - stimulus
-        46.3,  # 2009 - massive stimulus
-        47.2,  # 2010
-        47.0,  # 2011
-        46.7,  # 2012
-        46.5,  # 2013
-        46.2,  # 2014
-        44.7,  # 2015
-        44.1,  # 2016
-        44.4,  # 2017
-        44.8,  # 2018
-        43.1,  # 2019
-        43.0,  # 2020
-        43.0,  # 2021
-        43.7,  # 2022
-        42.0,  # 2023
-        42.5,  # 2024
-        42.2,  # 2025 est
-    ]
+    # Source: World Bank NE.GDI.TOTL.ZS (live) / NBS (fallback)
+    # Pettis: "40-50% for over a decade - unprecedented"
+    china_investment_pct = fetch_china_investment_pct(years)
 
     # --- Net Exports as % of GDP ---
     china_net_exports_pct = [
@@ -164,11 +118,8 @@ def build_structural_dataset():
     # Measures investment efficiency: higher = more wasteful
     # ICOR = Investment / Change in GDP
     # Pettis: rising ICOR proves increasing share of investment is unproductive
-    china_gdp_usd_B = [
-        1211, 1339, 1471, 1660, 1955, 2286, 2752, 3550, 4594, 5102,
-        6087, 7552, 8532, 9570, 10476, 11062, 11233, 12310, 13895, 14280,
-        14688, 17734, 17963, 17795, 18533, 19000,
-    ]
+    # Source: World Bank NY.GDP.MKTP.CD (live) / fallback
+    china_gdp_usd_B = fetch_china_gdp_usd_B(years)
     icor = []
     for i in range(len(years)):
         if i == 0:
@@ -244,23 +195,27 @@ def build_rebalancing_scenarios():
 
 
 # --- International Benchmarks ---
-BENCHMARKS = {
-    'country': [
-        'United States', 'Japan', 'Germany', 'South Korea', 'India',
-        'Brazil', 'UK', 'France', 'Indonesia', 'Thailand',
-        'China (official)', 'China (Pettis adj.)', 'Global Average'
-    ],
-    'hh_consumption_pct': [
-        68.0, 53.5, 52.0, 49.0, 60.0,
-        63.0, 63.0, 54.0, 57.0, 52.0,
-        38.8, 36.0, 58.0,
-    ],
-    'investment_pct': [
-        21.0, 25.5, 22.0, 31.0, 32.0,
-        15.0, 17.0, 24.0, 30.0, 24.0,
-        42.2, 44.0, 25.0,
-    ],
-}
+def _build_benchmarks():
+    """Build benchmarks dict with live World Bank data where available."""
+    bench_consumption = fetch_benchmarks_consumption()
+    bench_investment = fetch_benchmarks_investment()
+
+    countries = list(bench_consumption.keys())
+    hh_vals = [bench_consumption[c] for c in countries]
+    inv_vals = [bench_investment.get(c, 25.0) for c in countries]
+
+    # Add China entries and global average (always from model)
+    countries += ['China (official)', 'China (Pettis adj.)', 'Global Average']
+    hh_vals += [38.8, 36.0, 58.0]
+    inv_vals += [42.2, 44.0, 25.0]
+
+    return {
+        'country': countries,
+        'hh_consumption_pct': hh_vals,
+        'investment_pct': inv_vals,
+    }
+
+BENCHMARKS = _build_benchmarks()
 
 
 def plot_structural_imbalance(df):

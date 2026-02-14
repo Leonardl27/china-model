@@ -24,6 +24,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 
+from data_fetcher import (
+    fetch_usdcny_monthly,
+    fetch_official_reserves_monthly,
+    DEFAULTS,
+    merge_into_list,
+)
+
 
 def build_fx_intervention_dataset():
     """
@@ -72,30 +79,37 @@ def build_fx_intervention_dataset():
     ]
 
     # --- PBOC Reserve Change ($ billions per month) ---
-    # Source: SAFE monthly reserve releases
+    # Source: FRED TRESEGCNM052N monthly diff (live) / SAFE releases (fallback)
     # Note: relatively flat = intervention happening elsewhere
-    pboc_reserve_change = [
-        # 2022: declining
-        -5, -3, -8, -10, -12, -5, 2, -8, -15, -12, 5, 3,
-        # 2023: roughly flat
-        -3, 5, 8, -2, -5, 2, 3, -5, -2, 4, -3, 5,
-        # 2024: flat despite massive trade surplus
-        2, -5, 3, -2, 5, -3, 2, -4, 5, -2, 3, 8,
-        # 2025 H1
-        -5, 3, -2, 5, -3, 2,
-    ]
+    _hardcoded_pboc_chg = DEFAULTS["pboc_reserve_change"]
+    _live_reserves = fetch_official_reserves_monthly(start_date="2021-12-01")
+    if _live_reserves is not None and len(_live_reserves) > 1:
+        pboc_reserve_change = list(_hardcoded_pboc_chg)
+        # Convert levels to month-over-month changes
+        _res_vals = _live_reserves.values
+        _res_idx = list(_live_reserves.index)
+        month_strs = [m.strftime("%Y-%m-01") for m in months]
+        for i, ms in enumerate(month_strs):
+            if ms in _res_idx:
+                pos = _res_idx.index(ms)
+                if pos > 0:
+                    chg = float(_res_vals[pos]) - float(_res_vals[pos - 1])
+                    pboc_reserve_change[i] = round(chg, 0)
+    else:
+        pboc_reserve_change = list(_hardcoded_pboc_chg)
 
     # --- USD/CNY Exchange Rate (end of month) ---
-    usdcny = [
-        # 2022: sharp depreciation
-        6.36, 6.32, 6.34, 6.61, 6.72, 6.70, 6.75, 6.89, 7.12, 7.25, 7.15, 6.95,
-        # 2023: continued weakness
-        6.78, 6.88, 6.87, 6.92, 7.08, 7.25, 7.14, 7.29, 7.30, 7.32, 7.15, 7.10,
-        # 2024: managed float, weak
-        7.18, 7.20, 7.22, 7.24, 7.25, 7.27, 7.26, 7.15, 7.02, 7.12, 7.25, 7.30,
-        # 2025 H1
-        7.28, 7.25, 7.20, 7.22, 7.18, 7.15,
-    ]
+    # Source: FRED EXCHUS (live) / hardcoded fallback
+    _hardcoded_usdcny = DEFAULTS["usdcny_monthly"]
+    _live_usdcny = fetch_usdcny_monthly(start_date="2022-01-01")
+    if _live_usdcny is not None and len(_live_usdcny) > 0:
+        usdcny = list(_hardcoded_usdcny)
+        month_strs = [m.strftime("%Y-%m-01") for m in months]
+        for i, ms in enumerate(month_strs):
+            if ms in _live_usdcny.index:
+                usdcny[i] = round(float(_live_usdcny[ms]), 2)
+    else:
+        usdcny = list(_hardcoded_usdcny)
 
     # --- Setser "Fair Value" USD/CNY estimate ---
     # Based on: trade surplus size, productivity differentials, inflation diff

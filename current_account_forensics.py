@@ -23,6 +23,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 
+from data_fetcher import (
+    fetch_trade_balance_quarterly,
+    fetch_official_ca_annual,
+    fetch_china_gdp_T_annual,
+    DEFAULTS,
+    merge_into_list,
+)
+
 
 def build_ca_forensics_dataset():
     """
@@ -43,16 +51,21 @@ def build_ca_forensics_dataset():
             quarters.append(f"{y}Q{q}")
 
     # --- Customs Goods Trade Surplus ($ billions per quarter) ---
-    # Source: China General Administration of Customs
-    customs_surplus = [
-        76, 114, 126, 96,           # 2019 Q1-Q4
-        26, 137, 160, 148,          # 2020 Q1-Q4
-        117, 137, 162, 181,         # 2021 Q1-Q4
-        162, 203, 230, 198,         # 2022 Q1-Q4
-        180, 215, 230, 198,         # 2023 Q1-Q4
-        195, 250, 260, 250,         # 2024 Q1-Q4: surge in surplus
-        250, 300,                    # 2025 Q1-Q2: continued surge (Setser: ~$600B H1)
-    ]
+    # Source: FRED XTNTVA01CNM667S aggregated to quarterly (live) / China Customs (fallback)
+    _hardcoded_customs = DEFAULTS["customs_surplus_q"]
+    _live_trade = fetch_trade_balance_quarterly(start_year=2019)
+    if _live_trade is not None and len(_live_trade) > 0:
+        # Map live quarterly data into our quarter labels
+        customs_surplus = list(_hardcoded_customs)  # start with defaults
+        for i, q_label in enumerate(quarters):
+            yr = int(q_label[:4])
+            qn = int(q_label[-1])
+            # FRED quarterly dates are quarter start: YYYY-01-01, YYYY-04-01, etc.
+            q_start = f"{yr}-{(qn-1)*3+1:02d}-01"
+            if q_start in _live_trade.index:
+                customs_surplus[i] = round(float(_live_trade[q_start]), 0)
+    else:
+        customs_surplus = list(_hardcoded_customs)
 
     # --- BOP Goods Surplus ($ billions per quarter) ---
     # Source: SAFE BOP releases
@@ -135,18 +148,14 @@ def build_annual_ca_comparison():
 
     years = list(range(2018, 2026))
 
+    # Fetch live data where available, fall back to hardcoded
+    official_ca_B = fetch_official_ca_annual(years)
+    china_gdp_T = fetch_china_gdp_T_annual(years)
+
     data = {
         'year': years,
-        'official_ca_B': [
-            24,     # 2018
-            103,    # 2019
-            274,    # 2020
-            317,    # 2021
-            402,    # 2022
-            264,    # 2023 - suspiciously low
-            422,    # 2024
-            590,    # 2025 est (H1 = $294B)
-        ],
+        'official_ca_B': official_ca_B,
+        # Setser estimates and IMF forecasts are model/analytical - remain hardcoded
         'setser_est_ca_B': [
             24,     # 2018
             110,    # 2019
@@ -167,9 +176,7 @@ def build_annual_ca_comparison():
             422,    # 2024
             365,    # 2025 - IMF spring 2025 forecast (naive)
         ],
-        'china_gdp_T': [
-            13.9, 14.3, 14.7, 17.7, 18.0, 17.8, 18.5, 19.0,
-        ],
+        'china_gdp_T': china_gdp_T,
     }
 
     df = pd.DataFrame(data)

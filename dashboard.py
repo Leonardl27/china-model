@@ -26,6 +26,15 @@ from shadow_reserves import build_shadow_reserves_dataset
 from structural_imbalance import build_structural_dataset, build_rebalancing_scenarios
 from current_account_forensics import build_ca_forensics_dataset, build_annual_ca_comparison
 from fx_intervention import build_fx_intervention_dataset
+from data_fetcher import (
+    fetch_trade_surplus_annual,
+    fetch_credit_gdp_annual,
+    fetch_cpi_annual,
+    fetch_ppi_annual,
+    fetch_reer_annual,
+    fetch_csi300_annual,
+    DEFAULTS,
+)
 
 
 def build_market_comparison():
@@ -48,42 +57,38 @@ def build_market_comparison():
         'year': years,
 
         # --- Prediction 1: Trade surplus keeps growing ---
-        # (Confirmed: surplus went from $350B to $900B+ in 7 years)
-        'trade_surplus_B': [350, 421, 535, 676, 878, 823, 992, 1100],
+        # Source: FRED XTNTVA01CNM667S annual sum (live) / fallback
+        'trade_surplus_B': fetch_trade_surplus_annual(years),
 
         # --- Prediction 2: Debt/GDP keeps rising ---
-        # Source: BIS total credit to non-financial sector
-        # Pettis: debt rises because investment is unproductive
-        'total_debt_pct_gdp': [253, 259, 280, 272, 295, 288, 298, 310],
+        # Source: FRED QCNCAM770A (BIS credit/GDP, live) / fallback
+        'total_debt_pct_gdp': fetch_credit_gdp_annual(years),
 
         # --- Prediction 3: Deflation / low inflation ---
-        # Source: NBS CPI and PPI
-        # Pettis: weak consumption = deflationary pressure
-        'cpi_yoy_pct': [2.1, 2.9, 2.5, 0.9, 2.0, 0.2, 0.2, 0.3],
-        'ppi_yoy_pct': [3.5, -0.3, -1.8, 8.1, 4.1, -3.0, -2.2, -1.5],
+        # Source: FRED CPALTT01CNM657N CPI (live), FRED CHNPIEATI01GYM PPI (live)
+        'cpi_yoy_pct': fetch_cpi_annual(years),
+        'ppi_yoy_pct': fetch_ppi_annual(years),
 
         # --- Prediction 4: Manufacturing overcapacity ---
         # China's share of global manufacturing output (%)
-        # Pettis: investment model creates excess capacity exported abroad
+        # No public API source - remains hardcoded
         'china_mfg_share_global': [28.5, 28.7, 29.5, 30.3, 30.8, 31.5, 32.0, 33.0],
 
         # --- Prediction 5: Property sector stress ---
-        # Pettis: property was key investment vehicle; stress = model breaking
-        # Index: 100 = Jan 2021 peak
+        # No public API source - remains hardcoded
         'property_price_index': [88, 92, 95, 100, 98, 85, 78, 72],
 
         # --- Prediction 6: Youth unemployment elevated ---
-        # Source: NBS (when they publish it)
-        # Pettis: investment model creates capital-intensive not labor-intensive growth
+        # No public API source - remains hardcoded
         'youth_unemployment_pct': [10.0, 11.0, 12.0, 13.0, 14.5, 21.3, 17.0, 16.5],
 
         # --- Market reality check: Stock market ---
-        # CSI 300 year-end level
-        'csi300': [3010, 4096, 5211, 4940, 3872, 3441, 3935, 3800],
+        # Source: yfinance 000300.SS (live) / fallback
+        'csi300': fetch_csi300_annual(years),
 
         # --- RMB REER (Real Effective Exchange Rate) ---
-        # Index: 100 = 2020. Setser: should be much higher
-        'rmb_reer_index': [105, 102, 100, 98, 92, 88, 85, 83],
+        # Source: FRED RBCNBIS (live) / fallback
+        'rmb_reer_index': fetch_reer_annual(years),
     }
 
     return pd.DataFrame(data)

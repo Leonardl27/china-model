@@ -23,14 +23,18 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install pandas numpy matplotlib plotly requests
+        run: pip install pandas numpy matplotlib plotly requests wbgapi yfinance python-dotenv
 
       - name: Run dashboard (regenerate charts + report)
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
           python dashboard.py > report.txt 2>&1
           echo "--- Run completed at $(date -u) ---" >> report.txt
 
       - name: Run individual models
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
           python shadow_reserves.py > /dev/null 2>&1 || true
           python structural_imbalance.py > /dev/null 2>&1 || true
@@ -41,6 +45,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add *.png report.txt
+          git add *.png report.txt data_cache/
           git diff --cached --quiet || git commit -m "Weekly model update: $(date -u +%Y-%m-%d)"
           git push

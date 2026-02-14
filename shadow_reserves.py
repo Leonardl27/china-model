@@ -23,13 +23,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 
+from data_fetcher import fetch_official_reserves
+
 
 def build_shadow_reserves_dataset():
     """
     Construct time series of official vs. estimated true reserves.
 
     Data assembled from:
-    - SAFE official reserves releases
+    - FRED TRESEGCNM052N (live via data_fetcher, with hardcoded fallback)
     - Setser's estimates from CFR "Follow the Money" blog
     - State bank annual reports (foreign asset lines)
     - SAFE annual report disclosures on entrusted lending
@@ -38,31 +40,8 @@ def build_shadow_reserves_dataset():
     years = list(range(2004, 2026))
 
     # --- Official PBOC Reserves ($ billions) ---
-    # Source: SAFE monthly releases, year-end values
-    official_reserves = [
-        610,   # 2004
-        819,   # 2005
-        1066,  # 2006
-        1528,  # 2007
-        1946,  # 2008
-        2399,  # 2009
-        2847,  # 2010
-        3181,  # 2011
-        3312,  # 2012
-        3821,  # 2013
-        3843,  # 2014
-        3330,  # 2015 - capital flight episode
-        3011,  # 2016
-        3140,  # 2017
-        3073,  # 2018
-        3108,  # 2019
-        3217,  # 2020
-        3250,  # 2021
-        3128,  # 2022
-        3238,  # 2023
-        3245,  # 2024
-        3200,  # 2025 (est mid-year)
-    ]
+    # Source: FRED TRESEGCNM052N (live) / SAFE monthly releases (fallback)
+    official_reserves = fetch_official_reserves(years)
 
     # --- State Commercial Bank Foreign Assets ($ billions) ---
     # Source: Bank annual reports, Setser estimates
