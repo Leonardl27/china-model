@@ -1,0 +1,173 @@
+
+#################################################################
+#  PETTIS-SETSER CHINA ECONOMIC MODEL - FULL REPORT
+#################################################################
+
+
+=== MODEL 1: SHADOW RESERVES (SETSER) ===
+
+=================================================================
+SHADOW RESERVES SUMMARY (Setser Framework) - 2025 Estimate
+=================================================================
+  PBOC Official Reserves:      $  3,200B
+  State Bank Net Foreign:       $  1,250B
+  Policy Bank FX:               $    520B
+  SWF Vehicles:                 $    740B
+  Forward/Swap Positions:       $    100B
+  ----------------------------------------
+  TOTAL SHADOW RESERVES:        $  2,610B
+  TOTAL TRUE RESERVES:          $  5,810B
+  Official as % of True:           55.1%
+  Hidden as % of True:             44.9%
+=================================================================
+
+Key Setser thesis: China reports ~$3.2T but controls ~$5.8T
+The gap represents firepower for currency intervention that
+markets don't see in headline reserve numbers.
+
+
+=== MODEL 2: STRUCTURAL IMBALANCE (PETTIS) ===
+
+=================================================================
+STRUCTURAL IMBALANCE SUMMARY (Pettis Framework) - 2025
+=================================================================
+  Household Consumption / GDP:    38.8%  (global avg: 58%)
+  Investment / GDP:               42.2%  (global avg: 25%)
+  Net Exports / GDP:               3.0%
+  Household Income / GDP:         44.8%  (global avg: 60-65%)
+  Real Deposit Rate:             +160 bps
+  ----------------------------------------
+  Consumption Gap vs World:       19.2 pp
+  Investment Excess vs World:     17.2 pp
+  Peak Investment Year:         2010 (47.2%)
+=================================================================
+
+Pettis thesis: China's GDP growth is overstated because a large
+share of investment creates no economic value. The true productive
+GDP is significantly lower. Rebalancing requires transferring
+income back to households, but this means picking losers among
+SOEs and local governments.
+
+=================================================================
+REBALANCING SCENARIOS (Pettis Framework)
+Years to reach 65% total consumption share of GDP
+=================================================================
+
+       GDP Growth ->  C=60%  C=70%  C=80%  C=90%
+-------------------------------------------------------
+  GDP grows 2%/yr:     Never  Never   26 yr   17 yr
+  GDP grows 3%/yr:     Never   38 yr   18 yr   12 yr
+  GDP grows 4%/yr:     Never   29 yr   14 yr    9 yr
+  GDP grows 5%/yr:     Never   23 yr   11 yr    7 yr
+
+  C = consumption's share of each year's GDP growth
+  'Never' = consumption share doesn't reach 65% within 50 years
+  Key takeaway: Even at 5% GDP growth, consumption must claim
+  70%+ of growth to rebalance within a generation.
+
+
+=== MODEL 3: CURRENT ACCOUNT FORENSICS (SETSER) ===
+
+=================================================================
+CURRENT ACCOUNT FORENSICS (Setser Framework) - 2025
+=================================================================
+  Official CA Surplus:          $    590B
+  Setser Estimated CA:          $  1,000B
+  IMF Forecast:                 $    365B
+  ----------------------------------------
+  Official CA / GDP:               3.1%
+  Setser CA / GDP:                 5.3%
+  US Treasury threshold:         3.0%
+  ----------------------------------------
+  Hidden surplus:               $    410B
+=================================================================
+
+Key Setser finding: China's customs data shows ~$1T surplus but
+BOP methodology 'adjustments' reduce it to ~$590B officially.
+The ~$400B gap has no clear IMF methodological justification.
+If the true CA surplus is ~5% of GDP, China clearly exceeds the
+US Treasury's 3% threshold for currency manipulation.
+
+
+=== MODEL 4: FX INTERVENTION DETECTOR (SETSER) ===
+
+=================================================================
+FX INTERVENTION DETECTOR (Setser Framework) - Jun 2025
+=================================================================
+  USD/CNY Actual:                  7.15
+  Setser Fair Value:               4.85
+  Undervaluation:                 47.4%
+  ----------------------------------------
+  Cumul. State Bank FX Buys:    $    739B
+  Cumul. PBOC Reserve Chg:      $    -49B
+  Cumul. Total Intervention:    $    690B
+  ----------------------------------------
+  Dec 2024 state bank buying:   $110B (spot) / $120B (incl forwards)
+=================================================================
+
+Key finding: PBOC reserves look flat, creating the illusion of
+no intervention. But state banks have accumulated $700B+ in
+foreign assets since 2022. This is Setser's 'backdoor' intervention.
+
+Without this intervention, the RMB would be trading near 5.0,
+making Chinese exports ~30% more expensive and reducing the
+manufacturing trade surplus significantly.
+
+
+=== SCORECARD: FRAMEWORK vs MARKET REALITY ===
+
+==========================================================================================
+Prediction                                 Source   Verdict     
+------------------------------------------------------------------------------------------
+  Trade surplus keeps growing              Both     CONFIRMED   
+    Evidence: $350B -> $1100B (+214%)
+  Debt/GDP keeps rising (unproductive investment) Pettis   CONFIRMED   
+    Evidence: 253% -> 310% (+57 pp)
+  Deflation / disinflation (weak demand)   Pettis   CONFIRMED   
+    Evidence: Avg CPI: 0.2%, Avg PPI: -2.2% (last 3yr)
+  Manufacturing overcapacity / rising global share Pettis   CONFIRMED   
+    Evidence: 28.5% -> 33.0% of global mfg (+4.5 pp)
+  RMB kept artificially weak (REER declining) Setser   CONFIRMED   
+    Evidence: REER: 105 -> 83 (-22)
+  Property sector stress (investment model breaking) Pettis   CONFIRMED   
+    Evidence: Price index: 100 peak -> 72 (-28)
+==========================================================================================
+
+  SCORE: 6/6 predictions CONFIRMED
+  The Pettis-Setser framework has strong explanatory power for
+  China's current economic trajectory.
+
+
+=== KEY TAKEAWAYS ===
+
+
+  1. HIDDEN RESERVES (Setser): China controls ~$5.8T in FX, not the
+     reported $3.2T. The extra $2.6T is spread across state banks,
+     policy banks, and SWF vehicles -- giving China far more firepower
+     for currency intervention than markets recognize.
+
+  2. STRUCTURAL DISTORTION (Pettis): Household consumption is ~39% of
+     GDP vs a global average of ~58%. This 19pp gap represents a massive
+     transfer from households to producers via financial repression,
+     low wages, and an undervalued currency.
+
+  3. HIDDEN SURPLUS (Setser): China's true current account surplus is
+     ~$1T/year (~5% of GDP), not the officially reported ~$590B (~3%).
+     Post-2022 BOP methodology changes obscure ~$400B annually.
+
+  4. BACKDOOR INTERVENTION (Setser): State banks have accumulated $700B+
+     in foreign assets since 2022 while PBOC reserves stayed flat. This
+     invisible intervention keeps the RMB ~30% weaker than fundamentals.
+
+  5. REBALANCING MATH (Pettis): Even at 5% GDP growth, consumption must
+     claim 70%+ of each year's growth to rebalance within a generation.
+     This requires massive income transfers from SOEs/local governments
+     to households -- politically very difficult.
+
+  6. MARKET VALIDATION: 6/6 major predictions of the framework are
+     confirmed by market data: growing surplus, rising debt, deflation,
+     overcapacity, property stress, and RMB undervaluation.
+    
+
+Saved: dashboard.png
+--- Run completed at Sat Feb 14 20:20:03 UTC 2026 ---
