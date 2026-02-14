@@ -1,0 +1,46 @@
+name: Weekly Model Update
+
+on:
+  schedule:
+    # Run every Monday at 08:00 UTC
+    - cron: '0 8 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-models:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pandas numpy matplotlib plotly requests
+
+      - name: Run dashboard (regenerate charts + report)
+        run: |
+          python dashboard.py > report.txt 2>&1
+          echo "--- Run completed at $(date -u) ---" >> report.txt
+
+      - name: Run individual models
+        run: |
+          python shadow_reserves.py > /dev/null 2>&1 || true
+          python structural_imbalance.py > /dev/null 2>&1 || true
+          python current_account_forensics.py > /dev/null 2>&1 || true
+          python fx_intervention.py > /dev/null 2>&1 || true
+
+      - name: Commit updated outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add *.png report.txt
+          git diff --cached --quiet || git commit -m "Weekly model update: $(date -u +%Y-%m-%d)"
+          git push
