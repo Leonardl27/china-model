@@ -9,16 +9,16 @@
 =================================================================
 SHADOW RESERVES SUMMARY (Setser Framework) - 2025 Estimate
 =================================================================
-  PBOC Official Reserves:      $  3,200B
+  PBOC Official Reserves:      $  3,425B
   State Bank Net Foreign:       $  1,250B
   Policy Bank FX:               $    520B
   SWF Vehicles:                 $    740B
   Forward/Swap Positions:       $    100B
   ----------------------------------------
   TOTAL SHADOW RESERVES:        $  2,610B
-  TOTAL TRUE RESERVES:          $  5,810B
-  Official as % of True:           55.1%
-  Hidden as % of True:             44.9%
+  TOTAL TRUE RESERVES:          $  6,035B
+  Official as % of True:           56.8%
+  Hidden as % of True:             43.2%
 =================================================================
 
 Key Setser thesis: China reports ~$3.2T but controls ~$5.8T
@@ -119,8 +119,8 @@ manufacturing trade surplus significantly.
 ==========================================================================================
 Prediction                                 Source   Verdict     
 ------------------------------------------------------------------------------------------
-  Trade surplus keeps growing              Both     PARTIAL     
-    Evidence: $370339B -> $1100B (-100%)
+  Trade surplus keeps growing              Both     CONFIRMED   
+    Evidence: $370339B -> $1182407B (+219%)
   Debt/GDP keeps rising (unproductive investment) Pettis   CONFIRMED   
     Evidence: 235.0% -> 310.0% (+75 pp)
   Deflation / disinflation (weak demand)   Pettis   CONFIRMED   
@@ -128,12 +128,12 @@ Prediction                                 Source   Verdict
   Manufacturing overcapacity / rising global share Pettis   CONFIRMED   
     Evidence: 28.5% -> 33.0% of global mfg (+4.5 pp)
   RMB kept artificially weak (REER declining) Setser   PARTIAL     
-    Evidence: REER: 98.0 -> 89.0 (-9)
+    Evidence: REER: 98.0 -> 88.0 (-10)
   Property sector stress (investment model breaking) Pettis   CONFIRMED   
     Evidence: Price index: 100 peak -> 72 (-28)
 ==========================================================================================
 
-  SCORE: 4/6 predictions CONFIRMED
+  SCORE: 5/6 predictions CONFIRMED
   The Pettis-Setser framework has strong explanatory power for
   China's current economic trajectory.
 
@@ -170,4 +170,4 @@ Prediction                                 Source   Verdict
     
 
 Saved: dashboard.png
---- Run completed at Mon Feb 16 08:22:42 UTC 2026 ---
+--- Run completed at Mon Feb 23 08:23:00 UTC 2026 ---
