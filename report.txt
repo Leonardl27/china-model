@@ -120,7 +120,7 @@ manufacturing trade surplus significantly.
 Prediction                                 Source   Verdict     
 ------------------------------------------------------------------------------------------
   Trade surplus keeps growing              Both     CONFIRMED   
-    Evidence: $370339B -> $1182407B (+219%)
+    Evidence: $374565B -> $1188426B (+217%)
   Debt/GDP keeps rising (unproductive investment) Pettis   CONFIRMED   
     Evidence: 235.0% -> 310.0% (+75 pp)
   Deflation / disinflation (weak demand)   Pettis   CONFIRMED   
@@ -170,4 +170,4 @@ Prediction                                 Source   Verdict
     
 
 Saved: dashboard.png
---- Run completed at Mon Mar 23 08:28:59 UTC 2026 ---
+--- Run completed at Mon Mar 30 08:42:33 UTC 2026 ---
