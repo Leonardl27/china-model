@@ -128,7 +128,7 @@ Prediction                                 Source   Verdict
   Manufacturing overcapacity / rising global share Pettis   CONFIRMED   
     Evidence: 28.5% -> 33.0% of global mfg (+4.5 pp)
   RMB kept artificially weak (REER declining) Setser   PARTIAL     
-    Evidence: REER: 98.0 -> 88.0 (-10)
+    Evidence: REER: 99.0 -> 89.0 (-10)
   Property sector stress (investment model breaking) Pettis   CONFIRMED   
     Evidence: Price index: 100 peak -> 72 (-28)
 ==========================================================================================
@@ -170,4 +170,4 @@ Prediction                                 Source   Verdict
     
 
 Saved: dashboard.png
---- Run completed at Mon Apr 20 08:56:18 UTC 2026 ---
+--- Run completed at Mon Apr 27 09:02:01 UTC 2026 ---
