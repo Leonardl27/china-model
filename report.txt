@@ -1,3 +1,7 @@
+FRED fetch failed for XTNTVA01CNM667S: 429 Client Error: Too Many Requests for url: https://api.stlouisfed.org/fred/series/observations?series_id=XTNTVA01CNM667S&api_key=fd8d01b1bb0c7a86af8f0c0b59f6cc07&file_type=json&observation_start=2018-01-01&sort_order=asc&frequency=a&aggregation_method=sum
+FRED fetch failed for QCNCAM770A: 429 Client Error: Too Many Requests for url: https://api.stlouisfed.org/fred/series/observations?series_id=QCNCAM770A&api_key=fd8d01b1bb0c7a86af8f0c0b59f6cc07&file_type=json&observation_start=2018-01-01&sort_order=asc&frequency=a&aggregation_method=avg
+FRED fetch failed for CPALTT01CNM657N: 429 Client Error: Too Many Requests for url: https://api.stlouisfed.org/fred/series/observations?series_id=CPALTT01CNM657N&api_key=fd8d01b1bb0c7a86af8f0c0b59f6cc07&file_type=json&observation_start=2018-01-01&sort_order=asc&frequency=a&aggregation_method=avg
+FRED fetch failed for XTNTVA01CNM667S: 429 Client Error: Too Many Requests for url: https://api.stlouisfed.org/fred/series/observations?series_id=XTNTVA01CNM667S&api_key=fd8d01b1bb0c7a86af8f0c0b59f6cc07&file_type=json&observation_start=2018-01-01&sort_order=asc&frequency=a&aggregation_method=sum
 
 #################################################################
 #  PETTIS-SETSER CHINA ECONOMIC MODEL - FULL REPORT
@@ -120,9 +124,9 @@ manufacturing trade surplus significantly.
 Prediction                                 Source   Verdict     
 ------------------------------------------------------------------------------------------
   Trade surplus keeps growing              Both     CONFIRMED   
-    Evidence: $374565B -> $1179918B (+215%)
+    Evidence: $350B -> $1100B (+214%)
   Debt/GDP keeps rising (unproductive investment) Pettis   CONFIRMED   
-    Evidence: 235.0% -> 310.0% (+75 pp)
+    Evidence: 253% -> 310% (+57 pp)
   Deflation / disinflation (weak demand)   Pettis   CONFIRMED   
     Evidence: Avg CPI: 0.2%, Avg PPI: -2.2% (last 3yr)
   Manufacturing overcapacity / rising global share Pettis   CONFIRMED   
@@ -170,4 +174,4 @@ Prediction                                 Source   Verdict
     
 
 Saved: dashboard.png
---- Run completed at Mon May 25 09:33:01 UTC 2026 ---
+--- Run completed at Mon Jun  1 10:03:22 UTC 2026 ---
