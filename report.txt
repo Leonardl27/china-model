@@ -31,14 +31,14 @@ markets don't see in headline reserve numbers.
 =================================================================
 STRUCTURAL IMBALANCE SUMMARY (Pettis Framework) - 2025
 =================================================================
-  Household Consumption / GDP:    39.9%  (global avg: 58%)
-  Investment / GDP:               40.6%  (global avg: 25%)
-  Net Exports / GDP:               2.9%
+  Household Consumption / GDP:    40.0%  (global avg: 58%)
+  Investment / GDP:               40.5%  (global avg: 25%)
+  Net Exports / GDP:               2.8%
   Household Income / GDP:         44.8%  (global avg: 60-65%)
   Real Deposit Rate:             +160 bps
   ----------------------------------------
-  Consumption Gap vs World:       18.1 pp
-  Investment Excess vs World:     15.6 pp
+  Consumption Gap vs World:       18.0 pp
+  Investment Excess vs World:     15.5 pp
   Peak Investment Year:         2011 (46.3%)
 =================================================================
 
@@ -75,8 +75,8 @@ CURRENT ACCOUNT FORENSICS (Setser Framework) - 2025
   Setser Estimated CA:          $  1,000B
   IMF Forecast:                 $    365B
   ----------------------------------------
-  Official CA / GDP:               3.2%
-  Setser CA / GDP:                 5.3%
+  Official CA / GDP:               3.0%
+  Setser CA / GDP:                 5.1%
   US Treasury threshold:         3.0%
   ----------------------------------------
   Hidden surplus:               $    410B
@@ -170,4 +170,4 @@ Prediction                                 Source   Verdict
     
 
 Saved: dashboard.png
---- Run completed at Mon Jun 29 09:46:12 UTC 2026 ---
+--- Run completed at Mon Jul  6 09:32:35 UTC 2026 ---
